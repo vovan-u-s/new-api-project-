@@ -1,0 +1,496 @@
+{
+	"info": {
+		"_postman_id": "automation-exercise-api-tests",
+		"name": "Automation Exercise API Tests",
+		"description": "Collection for testing Automation Exercise APIs (First 6 APIs)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "API 1: Get All Products List",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response has products array\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.have.property('products');",
+							"    pm.expect(jsonData.products).to.be.an('array');",
+							"    pm.expect(jsonData.products.length).to.be.greaterThan(0);",
+							"});",
+							"",
+							"pm.test(\"Response code is 200\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.responseCode).to.equal(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/productsList",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"productsList"
+					]
+				},
+				"description": "Get all products list - should return 200 with products array"
+			},
+			"response": []
+		},
+		{
+			"name": "API 2: POST To All Products List (Negative)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 405\", function () {",
+							"    pm.response.to.have.status(405);",
+							"});",
+							"",
+							"pm.test(\"Response code is 405\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.responseCode).to.equal(405);",
+							"});",
+							"",
+							"pm.test(\"Error message is correct\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.message).to.equal('This request method is not supported.');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/productsList",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"productsList"
+					]
+				},
+				"description": "POST to products list - should return 405 (method not supported)"
+			},
+			"response": []
+		},
+		{
+			"name": "API 3: Get All Brands List",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response has brands array\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.have.property('brands');",
+							"    pm.expect(jsonData.brands).to.be.an('array');",
+							"    pm.expect(jsonData.brands.length).to.be.greaterThan(0);",
+							"});",
+							"",
+							"pm.test(\"Response code is 200\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.responseCode).to.equal(200);",
+							"});",
+							"",
+							"pm.test(\"Each brand has id and brand name\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    jsonData.brands.forEach(function(brand) {",
+							"        pm.expect(brand).to.have.property('id');",
+							"        pm.expect(brand).to.have.property('brand');",
+							"    });",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/brandsList",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"brandsList"
+					]
+				},
+				"description": "Get all brands list - should return 200 with brands array"
+			},
+			"response": []
+		},
+		{
+			"name": "API 4: PUT To All Brands List (Negative)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 405\", function () {",
+							"    pm.response.to.have.status(405);",
+							"});",
+							"",
+							"pm.test(\"Response code is 405\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.responseCode).to.equal(405);",
+							"});",
+							"",
+							"pm.test(\"Error message is correct\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.message).to.equal('This request method is not supported.');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/brandsList",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"brandsList"
+					]
+				},
+				"description": "PUT to brands list - should return 405 (method not supported)"
+			},
+			"response": []
+		},
+		{
+			"name": "API 5: POST To Search Product",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response has products array\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.have.property('products');",
+							"    pm.expect(jsonData.products).to.be.an('array');",
+							"});",
+							"",
+							"pm.test(\"Response code is 200\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.responseCode).to.equal(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "search_product",
+							"value": "Tshirt",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{baseUrl}}/searchProduct",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"searchProduct"
+					]
+				},
+				"description": "Search for products by search term - should return 200 with matching products"
+			},
+			"response": []
+		},
+		{
+			"name": "API 6: POST To Search Product without parameter (Negative)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							"",
+							"pm.test(\"Response code is 400\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.responseCode).to.equal(400);",
+							"});",
+							"",
+							"pm.test(\"Error message is correct\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.message).to.equal('Bad request, some parameter is missing in POST request.');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
+				"url": {
+					"raw": "{{baseUrl}}/searchProduct",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"searchProduct"
+					]
+				},
+				"description": "Search without search_product parameter - should return 400 (bad request)"
+			},
+			"response": []
+		},
+		{
+			"name": "API 7: POST To Verify Login with valid details",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200 or 404\", function () {",
+							"    pm.expect([200, 404]).to.include(pm.response.code);",
+							"});",
+							"",
+							"pm.test(\"Response has responseCode\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.have.property('responseCode');",
+							"});",
+							"",
+							"pm.test(\"Response has message\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.have.property('message');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "testuser@example.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "testpassword123",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{baseUrl}}/verifyLogin",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"verifyLogin"
+					]
+				},
+				"description": "Verify login with valid email and password"
+			},
+			"response": []
+		},
+		{
+			"name": "API 8: POST To Verify Login without email parameter",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							"",
+							"pm.test(\"Response code is 400\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.responseCode).to.equal(400);",
+							"});",
+							"",
+							"pm.test(\"Error message is correct\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.message).to.equal('Bad request, some parameter is missing in POST request.');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "password",
+							"value": "testpassword123",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{baseUrl}}/verifyLogin",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"verifyLogin"
+					]
+				},
+				"description": "Verify login without email parameter - should return 400 (bad request)"
+			},
+			"response": []
+		},
+		{
+			"name": "API 9: DELETE To Verify Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 405\", function () {",
+							"    pm.response.to.have.status(405);",
+							"});",
+							"",
+							"pm.test(\"Response code is 405\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.responseCode).to.equal(405);",
+							"});",
+							"",
+							"pm.test(\"Error message is correct\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.message).to.equal('This request method is not supported.');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/verifyLogin",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"verifyLogin"
+					]
+				},
+				"description": "DELETE to verify login - should return 405 (method not supported)"
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "https://automationexercise.com/api",
+			"type": "string"
+		}
+	]
+}

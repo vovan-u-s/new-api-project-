@@ -3,9 +3,23 @@
     "valid": ["top", "tshirt", "jean", "dress", "shirt"],
     "invalid": ["nonexistentproduct123"]
   },
+  "loginCredentials": {
+    "valid": {
+      "email": "testuser@example.com",
+      "password": "testpassword123"
+    },
+    "invalid": {
+      "email": "invalid@example.com",
+      "password": "wrongpassword"
+    },
+    "missingEmail": {
+      "password": "testpassword123"
+    }
+  },
   "apiEndpoints": {
     "productsList": "/productsList",
     "brandsList": "/brandsList",
-    "searchProduct": "/searchProduct"
+    "searchProduct": "/searchProduct",
+    "verifyLogin": "/verifyLogin"
   }
 }
