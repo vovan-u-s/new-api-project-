@@ -1,0 +1,11 @@
+{
+  "searchTerms": {
+    "valid": ["top", "tshirt", "jean", "dress", "shirt"],
+    "invalid": ["nonexistentproduct123"]
+  },
+  "apiEndpoints": {
+    "productsList": "/productsList",
+    "brandsList": "/brandsList",
+    "searchProduct": "/searchProduct"
+  }
+}

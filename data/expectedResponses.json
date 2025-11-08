@@ -1,0 +1,62 @@
+{
+  "expectedResponses": {
+    "productsList": {
+      "responseCode": 200,
+      "hasProducts": true,
+      "requiredFields": ["id", "name", "price", "brand", "category"]
+    },
+    "brandsList": {
+      "responseCode": 200,
+      "hasBrands": true,
+      "requiredFields": ["id", "brand"]
+    },
+    "searchProduct": {
+      "responseCode": 200,
+      "hasProducts": true
+    },
+    "methodNotSupported": {
+      "responseCode": 405,
+      "message": "This request method is not supported."
+    },
+    "missingParameter": {
+      "responseCode": 400,
+      "message": "Bad request, some parameter is missing in POST request."
+    },
+    "userNotFound": {
+      "responseCode": 404,
+      "message": "User not found!"
+    },
+    "accountCreated": {
+      "responseCode": 201,
+      "message": "User created!"
+    },
+    "accountDeleted": {
+      "responseCode": 200,
+      "message": "Account deleted!"
+    },
+    "emailExists": {
+      "responseCode": 400,
+      "message": "Email already exists!"
+    }
+  },
+  "testScenarios": {
+    "positiveTests": [
+      "Get all products",
+      "Get all brands", 
+      "Search for valid product",
+      "Login with valid credentials",
+      "Create new user account",
+      "Get user details by email",
+      "Update user account",
+      "Delete user account"
+    ],
+    "negativeTests": [
+      "POST to products list (method not allowed)",
+      "PUT to brands list (method not allowed)", 
+      "Search without search parameter",
+      "Login without email",
+      "Login with invalid credentials",
+      "DELETE login endpoint"
+    ]
+  }
+}

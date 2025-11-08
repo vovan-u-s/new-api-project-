@@ -1,0 +1,38 @@
+{
+  "name": "automation-exercise-api-tests",
+  "version": "1.0.0",
+  "description": "Playwright API testing project for Automation Exercise APIs with TypeScript",
+  "main": "index.ts",
+  "scripts": {
+    "test": "npx playwright test",
+    "test:api": "npx playwright test --grep @api",
+    "test:headed": "npx playwright test --headed",
+    "test:debug": "npx playwright test --debug",
+    "test:ui": "npx playwright test --ui",
+    "report": "npx playwright show-report",
+    "install:playwright": "npx playwright install",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [
+    "playwright",
+    "api-testing",
+    "automation",
+    "testing",
+    "json",
+    "typescript"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.40.0",
+    "@types/node": "^20.19.24",
+    "@types/node-fetch": "^2.6.13",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "node-fetch": "^2.7.0",
+    "zod": "^4.1.12"
+  }
+}
