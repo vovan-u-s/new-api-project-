@@ -34,17 +34,8 @@ export const productsListResponseSchema = z.object({
   products: z.array(productSchema).min(1)
 });
 
-/**
- * Schema for Search Product Response (API 5)
- */
-export const searchProductResponseSchema = z.object({
-  responseCode: z.literal(200),
-  products: z.array(productSchema)
-});
-
 // TypeScript types inferred from Zod schemas
 export type CategoryUserType = z.infer<typeof categoryUserTypeSchema>;
 export type Category = z.infer<typeof categorySchema>;
 export type Product = z.infer<typeof productSchema>;
 export type ProductsListResponse = z.infer<typeof productsListResponseSchema>;
-export type SearchProductResponse = z.infer<typeof searchProductResponseSchema>;

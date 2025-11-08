@@ -464,6 +464,376 @@
 				"description": "DELETE to verify login - should return 405 (method not supported)"
 			},
 			"response": []
+		},
+		{
+			"name": "API 10: POST To Verify Login with invalid details",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Response code is 404\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.responseCode).to.equal(404);",
+							"});",
+							"",
+							"pm.test(\"Error message contains 'User not found'\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.message).to.include('User not found');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "invalid@example.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "wrongpassword",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{baseUrl}}/verifyLogin",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"verifyLogin"
+					]
+				},
+				"description": "Verify login with invalid credentials - should return 404 (user not found)"
+			},
+			"response": []
+		},
+		{
+			"name": "API 11: POST To Create/Register User Account",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201 or 400\", function () {",
+							"    pm.expect([201, 400]).to.include(pm.response.code);",
+							"});",
+							"",
+							"pm.test(\"Response has responseCode\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.have.property('responseCode');",
+							"});",
+							"",
+							"pm.test(\"Response has message\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.have.property('message');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "Test User",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "testuser_{{$timestamp}}@example.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "testpassword123",
+							"type": "text"
+						},
+						{
+							"key": "title",
+							"value": "Mr",
+							"type": "text"
+						},
+						{
+							"key": "birth_date",
+							"value": "15",
+							"type": "text"
+						},
+						{
+							"key": "birth_month",
+							"value": "January",
+							"type": "text"
+						},
+						{
+							"key": "birth_year",
+							"value": "1990",
+							"type": "text"
+						},
+						{
+							"key": "firstname",
+							"value": "Test",
+							"type": "text"
+						},
+						{
+							"key": "lastname",
+							"value": "User",
+							"type": "text"
+						},
+						{
+							"key": "company",
+							"value": "Test Company",
+							"type": "text"
+						},
+						{
+							"key": "address1",
+							"value": "123 Test Street",
+							"type": "text"
+						},
+						{
+							"key": "address2",
+							"value": "Apt 1",
+							"type": "text"
+						},
+						{
+							"key": "country",
+							"value": "United States",
+							"type": "text"
+						},
+						{
+							"key": "zipcode",
+							"value": "12345",
+							"type": "text"
+						},
+						{
+							"key": "state",
+							"value": "California",
+							"type": "text"
+						},
+						{
+							"key": "city",
+							"value": "Los Angeles",
+							"type": "text"
+						},
+						{
+							"key": "mobile_number",
+							"value": "1234567890",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{baseUrl}}/createAccount",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"createAccount"
+					]
+				},
+				"description": "Create new user account - should return 201 if successful or 400 if user exists"
+			},
+			"response": []
+		},
+		{
+			"name": "API 12: DELETE METHOD To Delete User Account",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200 or 404\", function () {",
+							"    pm.expect([200, 404]).to.include(pm.response.code);",
+							"});",
+							"",
+							"pm.test(\"Response has responseCode\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.have.property('responseCode');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "testuser@example.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "testpassword123",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{baseUrl}}/deleteAccount",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"deleteAccount"
+					]
+				},
+				"description": "Delete user account - should return 200 if deleted or 404 if user doesn't exist"
+			},
+			"response": []
+		},
+		{
+			"name": "API 13: PUT METHOD To Update User Account",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200, 404, or 405\", function () {",
+							"    pm.expect([200, 404, 405]).to.include(pm.response.code);",
+							"});",
+							"",
+							"pm.test(\"Response has responseCode\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.have.property('responseCode');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "testuser@example.com",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "Updated Test User",
+							"type": "text"
+						},
+						{
+							"key": "firstname",
+							"value": "Updated",
+							"type": "text"
+						},
+						{
+							"key": "lastname",
+							"value": "User",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{baseUrl}}/updateAccount",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"updateAccount"
+					]
+				},
+				"description": "Update user account - should return 200 if updated, 404 if not found, or 405 if method not supported"
+			},
+			"response": []
+		},
+		{
+			"name": "API 14: GET user account detail by email",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200 or 404\", function () {",
+							"    pm.expect([200, 404]).to.include(pm.response.code);",
+							"});",
+							"",
+							"pm.test(\"Response has responseCode\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.have.property('responseCode');",
+							"});",
+							"",
+							"if (pm.response.code === 200) {",
+							"    pm.test(\"Response has user object\", function () {",
+							"        var jsonData = pm.response.json();",
+							"        pm.expect(jsonData).to.have.property('user');",
+							"        pm.expect(jsonData.user).to.have.property('email');",
+							"        pm.expect(jsonData.user).to.have.property('name');",
+							"    });",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/getUserAccountDetailByEmail?email=testuser@example.com",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"getUserAccountDetailByEmail"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "testuser@example.com"
+						}
+					]
+				},
+				"description": "Get user account details by email - should return 200 with user data or 404 if not found"
+			},
+			"response": []
 		}
 	],
 	"event": [

@@ -24,8 +24,18 @@ export class APIHelper {
    * Make POST request
    */
   async post(endpoint: string, data: any = {}, options: any = {}): Promise<APIResponse> {
+    // If content-type is form-urlencoded, convert data to URLSearchParams
+    let requestData = data;
+    if (options.headers?.['Content-Type'] === 'application/x-www-form-urlencoded') {
+      const params = new URLSearchParams();
+      Object.keys(data).forEach(key => {
+        params.append(key, data[key]);
+      });
+      requestData = params.toString();
+    }
+    
     const response = await this.request.post(`${this.baseURL}${endpoint}`, {
-      data,
+      data: requestData,
       ...options
     });
     return response;
@@ -35,8 +45,18 @@ export class APIHelper {
    * Make PUT request
    */
   async put(endpoint: string, data: any = {}, options: any = {}): Promise<APIResponse> {
+    // If content-type is form-urlencoded, convert data to URLSearchParams
+    let requestData = data;
+    if (options.headers?.['Content-Type'] === 'application/x-www-form-urlencoded') {
+      const params = new URLSearchParams();
+      Object.keys(data).forEach(key => {
+        params.append(key, data[key]);
+      });
+      requestData = params.toString();
+    }
+    
     const response = await this.request.put(`${this.baseURL}${endpoint}`, {
-      data,
+      data: requestData,
       ...options
     });
     return response;
@@ -76,10 +96,11 @@ export class APIHelper {
 
   /**
    * Validate response contains expected message
+   * @param responseBody - The already parsed response body object
+   * @param expectedMessage - The message to check for
    */
-  async validateResponseMessage(response: APIResponse, expectedMessage: string): Promise<void> {
-    const responseBody = await response.text();
-    expect(responseBody).toContain(expectedMessage);
+  validateResponseMessage(responseBody: any, expectedMessage: string): void {
+    expect(responseBody.message).toContain(expectedMessage);
   }
 
   /**
