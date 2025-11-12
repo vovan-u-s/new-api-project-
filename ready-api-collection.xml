@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="automation-exercise-api-tests" name="Automation Exercise API Tests" 
+    resourceRoot="" soapui-version="5.7.0" abortOnError="false" runType="SEQUENTIAL" 
+    xmlns:con="http://eviware.com/soapui/config">
+    <con:settings/>
+    <con:interface xsi:type="con:RestService" id="automation-exercise-rest-api" 
+        wadlVersion="http://wadl.dev.java.net/2009/02" name="Automation Exercise APIs" 
+        type="rest" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <con:settings/>
+        <con:definitionCache type="TEXT" rootPart=""/>
+        <con:endpoints>
+            <con:endpoint>https://automationexercise.com/api</con:endpoint>
+        </con:endpoints>
+        
+        <!-- API 1: Get All Products List -->
+        <con:resource name="Products List" path="/productsList" id="products-list">
+            <con:settings/>
+            <con:parameters/>
+            <con:method name="Get All Products" id="get-all-products" method="GET">
+                <con:settings/>
+                <con:parameters/>
+                <con:representation type="RESPONSE">
+                    <con:mediaType>application/json</con:mediaType>
+                    <con:status>200</con:status>
+                    <con:params/>
+                    <con:element>Response</con:element>
+                </con:representation>
+                <con:request name="API 1: Get All Products List" id="api-1-request" mediaType="application/json">
+                    <con:settings/>
+                    <con:endpoint>https://automationexercise.com/api</con:endpoint>
+                    <con:request/>
+                    <con:originalUri>https://automationexercise.com/api/productsList</con:originalUri>
+                    <con:credentials>
+                        <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+                        <con:authType>No Authorization</con:authType>
+                    </con:credentials>
+                    <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+                    <con:parameters/>
+                </con:request>
+            </con:method>
+            
+            <!-- API 2: POST To All Products List (Negative) -->
+            <con:method name="POST To Products (Negative)" id="post-products-negative" method="POST">
+                <con:settings/>
+                <con:parameters/>
+                <con:representation type="RESPONSE">
+                    <con:mediaType>application/json</con:mediaType>
+                    <con:status>405</con:status>
+                    <con:params/>
+                    <con:element>Response</con:element>
+                </con:representation>
+                <con:request name="API 2: POST To All Products List" id="api-2-request" mediaType="application/json">
+                    <con:settings/>
+                    <con:endpoint>https://automationexercise.com/api</con:endpoint>
+                    <con:request/>
+                    <con:originalUri>https://automationexercise.com/api/productsList</con:originalUri>
+                    <con:credentials>
+                        <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+                        <con:authType>No Authorization</con:authType>
+                    </con:credentials>
+                    <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+                    <con:parameters/>
+                </con:request>
+            </con:method>
+        </con:resource>
+        
+        <!-- API 3: Get All Brands List -->
+        <con:resource name="Brands List" path="/brandsList" id="brands-list">
+            <con:settings/>
+            <con:parameters/>
+            <con:method name="Get All Brands" id="get-all-brands" method="GET">
+                <con:settings/>
+                <con:parameters/>
+                <con:representation type="RESPONSE">
+                    <con:mediaType>application/json</con:mediaType>
+                    <con:status>200</con:status>
+                    <con:params/>
+                    <con:element>Response</con:element>
+                </con:representation>
+                <con:request name="API 3: Get All Brands List" id="api-3-request" mediaType="application/json">
+                    <con:settings/>
+                    <con:endpoint>https://automationexercise.com/api</con:endpoint>
+                    <con:request/>
+                    <con:originalUri>https://automationexercise.com/api/brandsList</con:originalUri>
+                    <con:credentials>
+                        <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+                        <con:authType>No Authorization</con:authType>
+                    </con:credentials>
+                    <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+                    <con:parameters/>
+                </con:request>
+            </con:method>
+            
+            <!-- API 4: PUT To All Brands List (Negative) -->
+            <con:method name="PUT To Brands (Negative)" id="put-brands-negative" method="PUT">
+                <con:settings/>
+                <con:parameters/>
+                <con:representation type="RESPONSE">
+                    <con:mediaType>application/json</con:mediaType>
+                    <con:status>405</con:status>
+                    <con:params/>
+                    <con:element>Response</con:element>
+                </con:representation>
+                <con:request name="API 4: PUT To All Brands List" id="api-4-request" mediaType="application/json">
+                    <con:settings/>
+                    <con:endpoint>https://automationexercise.com/api</con:endpoint>
+                    <con:request/>
+                    <con:originalUri>https://automationexercise.com/api/brandsList</con:originalUri>
+                    <con:credentials>
+                        <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+                        <con:authType>No Authorization</con:authType>
+                    </con:credentials>
+                    <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+                    <con:parameters/>
+                </con:request>
+            </con:method>
+        </con:resource>
+        
+        <!-- API 5 & 6: Search Product -->
+        <con:resource name="Search Product" path="/searchProduct" id="search-product">
+            <con:settings/>
+            <con:parameters/>
+            <con:method name="Search Product" id="search-product-method" method="POST">
+                <con:settings/>
+                <con:parameters/>
+                <con:representation type="REQUEST">
+                    <con:mediaType>application/x-www-form-urlencoded</con:mediaType>
+                    <con:params/>
+                </con:representation>
+                <con:representation type="RESPONSE">
+                    <con:mediaType>application/json</con:mediaType>
+                    <con:status>200</con:status>
+                    <con:params/>
+                    <con:element>Response</con:element>
+                </con:representation>
+                <con:request name="API 5: POST To Search Product" id="api-5-request" mediaType="application/x-www-form-urlencoded" postQueryString="false">
+                    <con:settings/>
+                    <con:endpoint>https://automationexercise.com/api</con:endpoint>
+                    <con:request>search_product=Tshirt</con:request>
+                    <con:originalUri>https://automationexercise.com/api/searchProduct</con:originalUri>
+                    <con:credentials>
+                        <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+                        <con:authType>No Authorization</con:authType>
+                    </con:credentials>
+                    <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+                    <con:parameters/>
+                </con:request>
+                <con:request name="API 6: Search Without Parameter (Negative)" id="api-6-request" mediaType="application/x-www-form-urlencoded" postQueryString="false">
+                    <con:settings/>
+                    <con:endpoint>https://automationexercise.com/api</con:endpoint>
+                    <con:request/>
+                    <con:originalUri>https://automationexercise.com/api/searchProduct</con:originalUri>
+                    <con:credentials>
+                        <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+                        <con:authType>No Authorization</con:authType>
+                    </con:credentials>
+                    <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+                    <con:parameters/>
+                </con:request>
+            </con:method>
+        </con:resource>
+        
+        <!-- API 7, 8, 9, 10: Verify Login -->
+        <con:resource name="Verify Login" path="/verifyLogin" id="verify-login">
+            <con:settings/>
+            <con:parameters/>
+            <con:method name="Verify Login" id="verify-login-method" method="POST">
+                <con:settings/>
+                <con:parameters/>
+                <con:representation type="REQUEST">
+                    <con:mediaType>application/x-www-form-urlencoded</con:mediaType>
+                    <con:params/>
+                </con:representation>
+                <con:representation type="RESPONSE">
+                    <con:mediaType>application/json</con:mediaType>
+                    <con:status>200 404</con:status>
+                    <con:params/>
+                    <con:element>Response</con:element>
+                </con:representation>
+                <con:request name="API 7: Verify Login with Valid Details" id="api-7-request" mediaType="application/x-www-form-urlencoded" postQueryString="false">
+                    <con:settings/>
+                    <con:endpoint>https://automationexercise.com/api</con:endpoint>
+                    <con:request>email=testuser@example.com&amp;password=testpassword123</con:request>
+                    <con:originalUri>https://automationexercise.com/api/verifyLogin</con:originalUri>
+                    <con:credentials>
+                        <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+                        <con:authType>No Authorization</con:authType>
+                    </con:credentials>
+                    <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+                    <con:parameters/>
+                </con:request>
+                <con:request name="API 8: Verify Login Without Email" id="api-8-request" mediaType="application/x-www-form-urlencoded" postQueryString="false">
+                    <con:settings/>
+                    <con:endpoint>https://automationexercise.com/api</con:endpoint>
+                    <con:request>password=testpassword123</con:request>
+                    <con:originalUri>https://automationexercise.com/api/verifyLogin</con:originalUri>
+                    <con:credentials>
+                        <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+                        <con:authType>No Authorization</con:authType>
+                    </con:credentials>
+                    <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+                    <con:parameters/>
+                </con:request>
+                <con:request name="API 10: Verify Login with Invalid Details" id="api-10-request" mediaType="application/x-www-form-urlencoded" postQueryString="false">
+                    <con:settings/>
+                    <con:endpoint>https://automationexercise.com/api</con:endpoint>
+                    <con:request>email=invalid@example.com&amp;password=wrongpassword</con:request>
+                    <con:originalUri>https://automationexercise.com/api/verifyLogin</con:originalUri>
+                    <con:credentials>
+                        <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+                        <con:authType>No Authorization</con:authType>
+                    </con:credentials>
+                    <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+                    <con:parameters/>
+                </con:request>
+            </con:method>
+            
+            <!-- API 9: DELETE To Verify Login -->
+            <con:method name="DELETE Verify Login (Negative)" id="delete-verify-login" method="DELETE">
+                <con:settings/>
+                <con:parameters/>
+                <con:representation type="RESPONSE">
+                    <con:mediaType>application/json</con:mediaType>
+                    <con:status>405</con:status>
+                    <con:params/>
+                    <con:element>Response</con:element>
+                </con:representation>
+                <con:request name="API 9: DELETE To Verify Login" id="api-9-request" mediaType="application/json">
+                    <con:settings/>
+                    <con:endpoint>https://automationexercise.com/api</con:endpoint>
+                    <con:request/>
+                    <con:originalUri>https://automationexercise.com/api/verifyLogin</con:originalUri>
+                    <con:credentials>
+                        <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+                        <con:authType>No Authorization</con:authType>
+                    </con:credentials>
+                    <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+                    <con:parameters/>
+                </con:request>
+            </con:method>
+        </con:resource>
+        
+        <!-- API 11: Create Account -->
+        <con:resource name="Create Account" path="/createAccount" id="create-account">
+            <con:settings/>
+            <con:parameters/>
+            <con:method name="Create Account" id="create-account-method" method="POST">
+                <con:settings/>
+                <con:parameters/>
+                <con:representation type="REQUEST">
+                    <con:mediaType>application/x-www-form-urlencoded</con:mediaType>
+                    <con:params/>
+                </con:representation>
+                <con:representation type="RESPONSE">
+                    <con:mediaType>application/json</con:mediaType>
+                    <con:status>201 400</con:status>
+                    <con:params/>
+                    <con:element>Response</con:element>
+                </con:representation>
+                <con:request name="API 11: POST To Create User Account" id="api-11-request" mediaType="application/x-www-form-urlencoded" postQueryString="false">
+                    <con:settings/>
+                    <con:endpoint>https://automationexercise.com/api</con:endpoint>
+                    <con:request>name=Test%20User&amp;email=testuser@example.com&amp;password=testpassword123&amp;title=Mr&amp;birth_date=15&amp;birth_month=January&amp;birth_year=1990&amp;firstname=Test&amp;lastname=User&amp;company=Test%20Company&amp;address1=123%20Test%20Street&amp;address2=Apt%201&amp;country=United%20States&amp;zipcode=12345&amp;state=California&amp;city=Los%20Angeles&amp;mobile_number=1234567890</con:request>
+                    <con:originalUri>https://automationexercise.com/api/createAccount</con:originalUri>
+                    <con:credentials>
+                        <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+                        <con:authType>No Authorization</con:authType>
+                    </con:credentials>
+                    <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+                    <con:parameters/>
+                </con:request>
+            </con:method>
+        </con:resource>
+        
+        <!-- API 12: Delete Account -->
+        <con:resource name="Delete Account" path="/deleteAccount" id="delete-account">
+            <con:settings/>
+            <con:parameters/>
+            <con:method name="Delete Account" id="delete-account-method" method="DELETE">
+                <con:settings/>
+                <con:parameters/>
+                <con:representation type="REQUEST">
+                    <con:mediaType>application/x-www-form-urlencoded</con:mediaType>
+                    <con:params/>
+                </con:representation>
+                <con:representation type="RESPONSE">
+                    <con:mediaType>application/json</con:mediaType>
+                    <con:status>200 404</con:status>
+                    <con:params/>
+                    <con:element>Response</con:element>
+                </con:representation>
+                <con:request name="API 12: DELETE To Delete User Account" id="api-12-request" mediaType="application/x-www-form-urlencoded" postQueryString="false">
+                    <con:settings/>
+                    <con:endpoint>https://automationexercise.com/api</con:endpoint>
+                    <con:request>email=testuser@example.com&amp;password=testpassword123</con:request>
+                    <con:originalUri>https://automationexercise.com/api/deleteAccount</con:originalUri>
+                    <con:credentials>
+                        <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+                        <con:authType>No Authorization</con:authType>
+                    </con:credentials>
+                    <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+                    <con:parameters/>
+                </con:request>
+            </con:method>
+        </con:resource>
+        
+        <!-- API 13: Update Account -->
+        <con:resource name="Update Account" path="/updateAccount" id="update-account">
+            <con:settings/>
+            <con:parameters/>
+            <con:method name="Update Account" id="update-account-method" method="PUT">
+                <con:settings/>
+                <con:parameters/>
+                <con:representation type="REQUEST">
+                    <con:mediaType>application/x-www-form-urlencoded</con:mediaType>
+                    <con:params/>
+                </con:representation>
+                <con:representation type="RESPONSE">
+                    <con:mediaType>application/json</con:mediaType>
+                    <con:status>200 404 405</con:status>
+                    <con:params/>
+                    <con:element>Response</con:element>
+                </con:representation>
+                <con:request name="API 13: PUT To Update User Account" id="api-13-request" mediaType="application/x-www-form-urlencoded" postQueryString="false">
+                    <con:settings/>
+                    <con:endpoint>https://automationexercise.com/api</con:endpoint>
+                    <con:request>email=testuser@example.com&amp;name=Updated%20Test%20User&amp;firstname=Updated&amp;lastname=User</con:request>
+                    <con:originalUri>https://automationexercise.com/api/updateAccount</con:originalUri>
+                    <con:credentials>
+                        <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+                        <con:authType>No Authorization</con:authType>
+                    </con:credentials>
+                    <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+                    <con:parameters/>
+                </con:request>
+            </con:method>
+        </con:resource>
+        
+        <!-- API 14: Get User Account Detail -->
+        <con:resource name="Get User Account Detail" path="/getUserAccountDetailByEmail" id="get-user-detail">
+            <con:settings/>
+            <con:parameters>
+                <con:parameter>
+                    <con:name>email</con:name>
+                    <con:value>testuser@example.com</con:value>
+                    <con:style>QUERY</con:style>
+                    <con:default>testuser@example.com</con:default>
+                    <con:required>true</con:required>
+                </con:parameter>
+            </con:parameters>
+            <con:method name="Get User Account Detail" id="get-user-detail-method" method="GET">
+                <con:settings/>
+                <con:parameters>
+                    <con:parameter required="true">
+                        <con:name>email</con:name>
+                        <con:value>testuser@example.com</con:value>
+                        <con:style>QUERY</con:style>
+                        <con:default>testuser@example.com</con:default>
+                    </con:parameter>
+                </con:parameters>
+                <con:representation type="RESPONSE">
+                    <con:mediaType>application/json</con:mediaType>
+                    <con:status>200 404</con:status>
+                    <con:params/>
+                    <con:element>Response</con:element>
+                </con:representation>
+                <con:request name="API 14: GET User Account Detail By Email" id="api-14-request" mediaType="application/json">
+                    <con:settings/>
+                    <con:endpoint>https://automationexercise.com/api</con:endpoint>
+                    <con:request/>
+                    <con:originalUri>https://automationexercise.com/api/getUserAccountDetailByEmail</con:originalUri>
+                    <con:credentials>
+                        <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+                        <con:authType>No Authorization</con:authType>
+                    </con:credentials>
+                    <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+                    <con:parameters>
+                        <con:entry key="email" value="testuser@example.com"/>
+                    </con:parameters>
+                </con:request>
+            </con:method>
+        </con:resource>
+    </con:interface>
+    <con:properties/>
+    <con:wssContainer/>
+    <con:oAuth2ProfileContainer/>
+    <con:oAuth1ProfileContainer/>
+    <con:sensitiveInformation/>
+</con:soapui-project>
